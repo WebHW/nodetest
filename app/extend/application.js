@@ -21,12 +21,11 @@ module.exports = {
         },
       };
 
-      mongoose.connect(config.mongodb, opts,
-        err => {
-          if (err) {
-            logger.error(err);
-          }
-        });
+      mongoose.connect(config.mongodb, opts, err => {
+        if (err) {
+          logger.error(err);
+        }
+      });
       this[MONGODB] = mongoose;
     }
   },
