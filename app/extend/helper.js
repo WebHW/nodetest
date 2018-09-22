@@ -25,22 +25,32 @@ md.set({
   typographer: true, // Enable smartypants and other sweet transforms
 });
 
-md.renderer.rules.fence = function(tokens, idx) {
+md.renderer.rules.fence = (tokens, idx) => {
   const token = tokens[idx];
-  let language = token.info && ('language-' + token.info) || '';
+  let language = (token.info && 'language-' + token.info) || '';
   language = validator.escape(language);
 
-  return '<pre class="prettyprint ' + language + '">'
-    + '<code>' + validator.escape(token.content) + '</code>'
-    + '</pre>';
+  return (
+    '<pre class="prettyprint ' +
+    language +
+    '">' +
+    '<code>' +
+    validator.escape(token.content) +
+    '</code>' +
+    '</pre>'
+  );
 };
 
-md.renderer.rules.code_block = function(tokens, idx /* , options*/) {
+md.renderer.rules.code_block = (tokens, idx /* , options */) => {
   const token = tokens[idx];
 
-  return '<pre class="prettyprint">'
-    + '<code>' + validator.escape(token.content) + '</code>'
-    + '</pre>';
+  return (
+    '<pre class="prettyprint">' +
+    '<code>' +
+    validator.escape(token.content) +
+    '</code>' +
+    '</pre>'
+  );
 };
 
 const myxss = new jsxss.FilterXSS({
@@ -52,14 +62,21 @@ const myxss = new jsxss.FilterXSS({
   },
 });
 
-exports.markdown = function(text) {
-  return '<div class="markdown-text">' + myxss.process(md.render(text || '')) + '</div>';
+exports.markdown = text => {
+  return (
+    '<div class="markdown-text">' +
+    myxss.process(md.render(text || '')) +
+    '</div>'
+  );
 };
 
-exports.escapeSignature = function(signature) {
-  return signature.split('\n').map(function(p) {
-    return _.escape(p);
-  }).join('<br>');
+exports.escapeSignature = signature => {
+  return signature
+    .split('\n')
+    .map(p => {
+      return validator.escape(p);
+    })
+    .join('<br>');
 };
 
 exports.staticFile = function(filePath) {
@@ -70,7 +87,7 @@ exports.staticFile = function(filePath) {
 };
 
 exports.tabName = function(tab) {
-  const pair = this.app.config.tabs.find(function(pair) {
+  const pair = this.app.config.tabs.find(pair => {
     return pair[0] === tab;
   });
   if (pair) {
