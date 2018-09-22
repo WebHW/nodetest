@@ -4,15 +4,15 @@ module.exports = {
   write: true,
   prefix: '^',
   plugin: 'autod-egg',
-  test:[
+  test: [
     'test',
-    'benckmark'
+    'benchmark',
   ],
-  dep:[
+  dep: [
     'egg',
-    'egg-scripts'
+    'egg-scripts',
   ],
-  devdep:[
+  devdep: [
     'egg-ci',
     'egg-bin',
     'egg-mock',
@@ -22,8 +22,9 @@ module.exports = {
     'eslint-config-egg',
     'webstorm-disable-index',
   ],
-  exclude:[
+  exclude: [
     './test/fixtures',
     './dist',
-  ]
-}
+  ],
+};
+

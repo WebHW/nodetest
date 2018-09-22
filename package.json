@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "data2xml": "^1.2.5",
     "egg": "^2.2.1",
     "egg-mongoose": "^2.1.1",
     "egg-redis": "^2.0.0",
@@ -14,7 +15,8 @@
     "loader-koa": "^2.0.0",
     "markdown-it": "^8.4.1",
     "uuid": "^3.2.1",
-    "validator": "^9.4.1"
+    "validator": "^9.4.1",
+    "xmlbuilder": "^9.0.7"
   },
   "devDependencies": {
     "autod": "^3.0.1",
